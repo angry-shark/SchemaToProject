@@ -23,7 +23,7 @@
         }
 
         const handleClick = () => {
-            axios.get('/api/project/list').then((res) => {
+            axios.post('/api/project/list', {a:1,b:1}).then((res) => {
                 alert(JSON.stringify(res.data));
             })
         }

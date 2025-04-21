@@ -17,4 +17,10 @@ module.exports = (app) => {
       },
     })
   );
+
+  //引入 ctx body 解析中间件
+  app.use(require("koa-bodyparser")({
+    formLimit:'1000mb',
+    enableTypes: ['json', 'form', 'text'],
+  }));
 };
