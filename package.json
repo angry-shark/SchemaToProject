@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --quiet --ext js,vue ."
+    "lint": "eslint --quiet --ext js,vue .",
+    "dev":"export _ENV='local' && nodemon ./index.js",
+    "beta":"export _ENV='beta' && nodemon ./index.js",
+    "prod":"export _ENV='production' && nodemon ./index.js",
+    "dev:win":"set _ENV='local' && nodemon ./index.js",
+    "beta:win":"set _ENV='beta' && nodemon ./index.js",
+    "prod:win":"set _ENV=''production' && nodemon ./index.js"
   },
   "repository": {
     "type": "git",

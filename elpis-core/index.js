@@ -11,7 +11,6 @@ const controllerLoader = require("./loader/controller");
 const serviceLoader = require("./loader/service");
 const configLoader = require("./loader/config");
 const extendLoader = require("./loader/extend");
-const { request } = require("http");
 
 module.exports = {
   /**
@@ -56,7 +55,7 @@ module.exports = {
 
     //注册全局中间件
     try{
-      request(`${app.businessPath}${sep}middleware.js`)(app)
+      require(`${app.businessPath}${sep}middleware.js`)(app)
       console.log("注册全局中间件完成");
     }catch(e){
       console.error(`注册全局中间件失败：${e}`);
@@ -66,12 +65,10 @@ module.exports = {
     routerLoader(app);
     console.log("加载&注册路由完成");
 
-    //
-
 
     //启动服务
     try{
-      const port = process.env.PORT || 3000;
+      const port = process.env.PORT || 8080;
       const host = process.env.HOST || "0.0.0.0"
       app.listen(port, host, () => {
         console.log(`服务启动成功，访问地址： http://${host}:${port}`);

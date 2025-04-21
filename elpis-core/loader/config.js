@@ -36,10 +36,8 @@ module.exports = (app) => {
       envConfig = require(path.resolve(configPath, `.${sep}config.local.js`));
     } else if (app.env.isBeta()) {
       envConfig = require(path.resolve(configPath, `.${sep}config.beta.js`));
-    } else if (app.env.isProd()) {
+    } else if (app.env.isProduction()) {
       envConfig = require(path.resolve(configPath, `.${sep}config.prod.js`));
-    } else {
-      envConfig = require(path.resolve(configPath, `.${sep}config.local.js`));
     }
   } catch (e) {
     console.log(`没有找到环境配置文件 config.${app.env.get()}.js`);
