@@ -2,5 +2,6 @@ const ElpisCore = require('./elpis-core');
 
 //boot project
 ElpisCore.start({
-    name:"Elpis"
+    name:"Elpis",
+    homePage:'/'
 })

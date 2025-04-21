@@ -23,4 +23,9 @@ module.exports = (app) => {
     formLimit:'1000mb',
     enableTypes: ['json', 'form', 'text'],
   }));
+
+
+  //引入异常捕获中间件
+  const errorHandle = app.middlewares.errorHandle
+  app.use(errorHandle);
 };
