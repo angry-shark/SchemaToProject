@@ -1,5 +1,10 @@
 const path = require("path");
 
+
+/**
+ * 从下往上 = 从外到内
+ * @param {} app 
+ */
 module.exports = (app) => {
   // 静态资源中间件, 配置静态资源根目录
   const koaStatic = require("koa-static");
@@ -28,4 +33,8 @@ module.exports = (app) => {
   //引入异常捕获中间件
   const errorHandle = app.middlewares.errorHandle
   app.use(errorHandle);
+
+  //引入api签名合法性校验中间件
+  const apiSignVerify = app.middlewares.apiSignVerify;
+  app.use(apiSignVerify);
 };

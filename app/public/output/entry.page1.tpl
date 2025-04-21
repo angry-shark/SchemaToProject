@@ -13,6 +13,7 @@
     <input id="options" value="{{options}}" style="display: none;">
     <button onclick="handleClick()">get List</button>
     <script src="https:/cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-md5@0.8.3/src/md5.min.js"></script>
     <script type="text/javascript">
         try{
             window.env = document.getElementById('env').value;
@@ -23,8 +24,17 @@
         }
 
         const handleClick = () => {
-            axios.post('/api/project/list', {a:1,b:1}).then((res) => {
-                alert(JSON.stringify(res.data));
+            const signKey = 'adsefdrgfhjvgcxfbds34er5thy'
+            const st = Date.now()
+
+            axios.request({
+                method:'post',
+                url:'/api/project/list', 
+                data:{a:1,b:1},
+                headers: {
+                    s_t:st,
+                    s_sign: md5(`${signKey}_${st}`),
+                }
             })
         }
     </script>
