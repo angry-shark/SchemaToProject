@@ -28,9 +28,11 @@
             const st = Date.now()
 
             axios.request({
-                method:'post',
-                url:'/api/project/list', 
-                data:{a:1,b:1},
+                method:'get',
+                url:'/api/project/list',
+                params:{
+                    proj_key:'1111'
+                }, 
                 headers: {
                     s_t:st,
                     s_sign: md5(`${signKey}_${st}`),

@@ -37,4 +37,8 @@ module.exports = (app) => {
   //引入api签名合法性校验中间件
   const apiSignVerify = app.middlewares.apiSignVerify;
   app.use(apiSignVerify);
+
+  //api 参数校验
+  const apiParamsVerify = app.middlewares.apiParamsVerify
+  app.use(apiParamsVerify)
 };
