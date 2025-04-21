@@ -11,6 +11,8 @@
     <h1>page1</h1>
     <input id="env" value="{{env}}" style="display: none;">
     <input id="options" value="{{options}}" style="display: none;">
+    <button onclick="handleClick()">get List</button>
+    <script src="https:/cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
     <script type="text/javascript">
         try{
             window.env = document.getElementById('env').value;
@@ -18,6 +20,12 @@
             window.options = JSON.parse(options);
         }catch(e){
             console.error(e);
+        }
+
+        const handleClick = () => {
+            axios.get('/api/project/list').then((res) => {
+                alert(JSON.stringify(res.data));
+            })
         }
     </script>
 </body>
