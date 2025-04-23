@@ -15,7 +15,7 @@ module.exports = (app) => {
   app.use(
     koaNunjucks({
       ext: "tpl",
-      path: path.resolve(process.cwd(), "./app/public"),
+      path: path.resolve(process.cwd(), "./app/public/"),
       nunjucksConfig: {
         noCache: true,
         trimBlocks: true,
