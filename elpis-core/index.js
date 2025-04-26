@@ -76,5 +76,7 @@ module.exports = {
     }catch(e){
       console.error(`服务启动失败：${e}`);
     }
+
+    return app;
   },
 };

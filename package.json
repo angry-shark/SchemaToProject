@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --quiet --ext js,vue .",
+    "test:be": "_ENV='local' mocha './test/**/*.js'",
+
     "dev": "export _ENV='local' && nodemon ./index.js",
     "beta": "export _ENV='beta' && nodemon ./index.js",
     "prod": "export _ENV='production' && nodemon ./index.js",
     "dev:win": "set _ENV='local' && nodemon ./index.js",
     "beta:win": "set _ENV='beta' && nodemon ./index.js",
     "prod:win": "set _ENV='production' && nodemon ./index.js",
-    "fbuild:dev": "set _ENV='local' && node --max_old_space_size=4096 ./webpack/dev.js",
-    "fbuild:prod": "set _ENV='production' && node ./webpack/prod.js"
+    "fbuild:dev": "export _ENV='local' && node --max_old_space_size=4096 ./webpack/dev.js",
+    "fbuild:prod": "export _ENV='production' && node ./webpack/prod.js"
   },
   "repository": {
     "type": "git",
