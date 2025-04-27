@@ -3,6 +3,8 @@ import { createApp } from "vue";
 //引入组件库
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
+import 'element-plus/theme-chalk/dark/css-vars.css'
+
 
 //引入自定义全局样式
 import '$pages/asserts/custom.css'

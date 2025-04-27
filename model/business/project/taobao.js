@@ -1,6 +1,6 @@
 module.exports = {
   name: "淘宝",
-  description: "淘宝电商系统",
+  desc: "淘宝电商系统",
   homePage: "",
   menu: [
     {

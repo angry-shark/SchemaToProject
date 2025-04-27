@@ -1,6 +1,6 @@
 module.exports = {
   name: "拼多多",
-  description: "拼多多电商系统",
+  desc: "拼多多电商系统",
   homePage: "",
   menu: [
     {
