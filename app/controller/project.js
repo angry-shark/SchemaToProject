@@ -37,5 +37,24 @@ module.exports = (app) => {
 
       this.success(ctx, dtoModelList);
     }
+
+    /**
+     * 根据 proj_key 获取对应模型下的 proj_list（若无proj_key, 全量获取）
+     * @param {*} ctx
+     */
+    async getList(ctx) {
+      const { proj_key: projKey } = ctx.request.query;
+
+      const { project: projectService } = app.service;
+      const projectList = projectService.getList({ projKey });
+
+      //构建关键数据list
+      const dtoProjectList = projectList.map(proj => {
+        const {modelKey, key, name, desc, homePage} = proj
+        return {modelKey, key, name, desc, homePage}
+      });
+
+      this.success(ctx, dtoProjectList);
+    }
   };
 };

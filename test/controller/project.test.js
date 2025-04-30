@@ -36,4 +36,49 @@ describe("测试project相关接口", function () {
         })    
     }
   });
+
+  it("GET /api/project/list without projKey", async () => {
+    let tmpRequest = request.get("/api/project/model_list");
+    tmpRequest = tmpRequest.set("s_t", st);
+    tmpRequest = tmpRequest.set("s_sign", md5(`${signKey}_${st}`));
+    const res = await tmpRequest;
+    assert(res.body.success === true);
+    const resData = res.body.data;
+    assert(resData.length > 0);
+
+    for(let i = 0; i < resData.length; i++){
+        const item = resData[i]
+        assert(item.model)
+        assert(item.model.key)
+        assert(item.model.name)
+        assert(item.project)
+        Object.values(item.project).forEach(proj => {
+            assert(proj.key)
+            assert(proj.name)
+        })    
+    }
+  });
+
+
+  it("GET /api/project/list with projKey", async () => {
+    let tmpRequest = request.get("/api/project/model_list");
+    tmpRequest = tmpRequest.set("s_t", st);
+    tmpRequest = tmpRequest.set("s_sign", md5(`${signKey}_${st}`));
+    const res = await tmpRequest;
+    assert(res.body.success === true);
+    const resData = res.body.data;
+    assert(resData.length > 0);
+
+    for(let i = 0; i < resData.length; i++){
+        const item = resData[i]
+        assert(item.model)
+        assert(item.model.key)
+        assert(item.model.name)
+        assert(item.project)
+        Object.values(item.project).forEach(proj => {
+            assert(proj.key)
+            assert(proj.name)
+        })    
+    }
+  });
 });
