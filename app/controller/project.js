@@ -46,15 +46,34 @@ module.exports = (app) => {
       const { proj_key: projKey } = ctx.request.query;
 
       const { project: projectService } = app.service;
-      const projectList = projectService.getList({ projKey });
-
+      const projectList = await projectService.getList({ projKey });
       //构建关键数据list
-      const dtoProjectList = projectList.map(proj => {
-        const {modelKey, key, name, desc, homePage} = proj
-        return {modelKey, key, name, desc, homePage}
+      const dtoProjectList = projectList.map((proj) => {
+        const { modelKey, key, name, desc, homePage } = proj;
+        return { modelKey, key, name, desc, homePage };
       });
-
       this.success(ctx, dtoProjectList);
+    }
+
+    /**
+     * 获取指定 proj_key 的项目配置
+     */
+    async getProject(ctx) {
+      const { proj_key: projKey } = ctx.request.query;
+      if (!projKey) {
+        this.fail(ctx, "proj_key is required");
+        return;
+      }
+
+      const { project: projectService } = app.service;
+      const projectConf = await projectService.getProject({projKey});
+      if (!projectConf) {
+        this.fail(ctx, 50000, "proj_key not found");
+        return;
+      }
+
+
+      this.success(ctx, projectConf);
     }
   };
 };

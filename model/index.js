@@ -20,7 +20,9 @@ function projectExtendModel(model, project) {
       //case 2，modify
       for (let i = 0; i < modelValue.length; i++) {
         const modelItem = modelValue[i];
-        const projectItem = projectValue.find((proj) => proj.key === modelItem.key);
+        const projectItem = projectValue.find(
+          (proj) => proj.key === modelItem.key
+        );
         /*
          * proj & model both have same key, should 递归调用 projectExtendModel 方法
          * overwrite
@@ -97,6 +99,7 @@ module.exports = (app) => {
 
       modelItem.project[projectKey] = require(file);
       modelItem.project[projectKey].key = projectKey; //注入proj key
+      modelItem.project[projectKey].modelKey = modelKey; //注入model key
     }
 
     if (type === "model") {

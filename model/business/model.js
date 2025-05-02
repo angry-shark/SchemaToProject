@@ -6,6 +6,7 @@ module.exports = {
       key: "product",
       name: "商品管理",
       menuType: "module",
+      moduleType:'custom',
       customConfig: {
         path: "/todo",
       },
@@ -14,6 +15,7 @@ module.exports = {
       key: "order",
       name: "订单管理",
       menuType: "module",
+      moduleType:'custom',
       customConfig: {
         path: "/todo",
       },
@@ -22,6 +24,7 @@ module.exports = {
       key: "client",
       name: "客户管理",
       menuType: "module",
+      moduleType:'custom',
       customConfig: {
         path: "/todo",
       },

@@ -17,21 +17,37 @@ module.exports = (app) => {
      * @param {*} ctx
      */
     async getList({ projKey }) {
-      return modelList.reduce((prev,cur) => {
-        const newPrev = [...prev]
-        const {project} = cur
-
-        if(!projKey || !project[projKey]){
-          return;
+      return modelList.reduce((prev, cur) => {
+        const newPrev = [...prev];
+        const { project } = cur;
+        if (projKey && !project[projKey]) {
+          return prev;
         }
 
-        for(const pKey in project){
-          newPrev.push(project[pKey])
+        for (const pKey in project) {
+          newPrev.push(project[pKey]);
         }
-
 
         return newPrev;
-      },[])
+      }, []);
+    }
+
+    /**
+     * 根据 proj_key 获取 projectConfig
+     * @param {*} projKey
+     * @returns
+     */
+    async getProject({ projKey }) {
+      let projectConfig;
+
+      modelList.forEach((item) => {
+        const { project } = item;
+        if (project[projKey]) {
+          projectConfig = project[projKey];
+        }
+      });
+
+      return projectConfig;
     }
   };
 };

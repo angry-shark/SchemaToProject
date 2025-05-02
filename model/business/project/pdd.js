@@ -30,6 +30,7 @@ module.exports = {
           {
             key: "sider-search",
             name: "信息查询",
+            menuType: "module",
             moduleType: "iframe",
             iframeConfig: {
               path: "https://www.baidu.com",
@@ -41,6 +42,7 @@ module.exports = {
     {
       key: "sider-search",
       name: "信息查询",
+      menuType: "module",
       moduleType: "iframe",
       iframeConfig: {
         path: "https://www.baidu.com",

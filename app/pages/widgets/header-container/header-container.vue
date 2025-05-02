@@ -1,23 +1,46 @@
 <template>
   <el-container class="header-container">
     <el-header class="header">
-      <el-row type="flex" align="middle" class="header-row">
+      <el-row
+        type="flex"
+        align="middle"
+        class="header-row"
+      >
         <!-- 左上方title -->
-        <el-row type="flex" align="middle" class="title-panel">
-          <img src="./asserts/logo.png" class="logo">
-          <el-row class="text">{{ title }}</el-row>
+        <el-row
+          type="flex"
+          align="middle"
+          class="title-panel"
+        >
+          <img
+            src="./asserts/logo.png"
+            class="logo"
+          >
+          <el-row class="text">
+            {{ title }}
+          </el-row>
         </el-row>
         <!-- 插槽：菜单区域 -->
-        <slot name="menu-content"></slot>
+        <slot name="menu-content" />
 
         <!-- 插槽：用户个人信息区域 -->
-        <el-row type="flex" align="middle" justify="end" class="setting-panel">
-          <slot name="setting-content"></slot>
-          <img src="./asserts/avatar.png" class="avatar">
+        <el-row
+          type="flex"
+          align="middle"
+          justify="end"
+          class="setting-panel"
+        >
+          <slot name="setting-content" />
+          <img
+            src="./asserts/avatar.png"
+            class="avatar"
+          >
           <el-dropdown @command="handleUserCommand">
-            <span class="username">{{ userName }} <i class="el-icon-arrow-down el-icon--right"></i></span>
+            <span class="username">{{ userName }} <i class="el-icon-arrow-down el-icon--right" /></span>
             <template #dropdown>
-              <el-dropdown-item command="logout">退出登陆</el-dropdown-item>
+              <el-dropdown-item command="logout">
+                退出登陆
+              </el-dropdown-item>
             </template>
           </el-dropdown>
         </el-row>
@@ -25,7 +48,7 @@
     </el-header>
     <el-main class="main-container">
       <!-- 插槽：核心内容填充区域 -->
-      <slot name="main-content"></slot>
+      <slot name="main-content" />
     </el-main>
   </el-container>
 </template>
@@ -49,7 +72,7 @@ const handleUserCommand = (e) => { console.log(e) }
 
   .header {
     max-height: 120px;
-    border: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
 
     .header-row {
       height: 60px;

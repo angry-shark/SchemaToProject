@@ -17,6 +17,16 @@ module.exports = {
   },
 
   "/api/project/getProject": {
-    get: {},
+    get: {
+      query: {
+        type: "object",
+        properties: {
+          proj_key: {
+            type: "string",
+          },
+        },
+        required: ["proj_key"],
+      },
+    },
   },
 };

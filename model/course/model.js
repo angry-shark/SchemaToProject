@@ -6,6 +6,7 @@ module.exports = {
         key: "video",
         name: "视频管理",
         menuType: "module",
+        moduleType:'custom',
         customConfig: {
           path: "/todo",
         },
@@ -14,6 +15,7 @@ module.exports = {
         key: "user",
         name: "用户管理",
         menuType: "module",
+        moduleType:'custom',
         customConfig: {
           path: "/todo",
         },
