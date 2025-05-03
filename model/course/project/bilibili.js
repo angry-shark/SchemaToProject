@@ -1,11 +1,11 @@
 module.exports = {
   name: "b站课堂",
   desc: "b站课程管理系统",
-  homePage: "",
+  homePage: "/todo?proj_key=bilibili&key=video",
   menu: [
     {
-        key:'video',
-        name:'视频管理(b站)'
+      key: "video",
+      name: "视频管理(b站)",
     },
     {
       key: "traffic",

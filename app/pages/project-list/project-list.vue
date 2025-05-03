@@ -65,7 +65,8 @@ async function getModelList() {
 }
 
 const onEnter = (projItem) => {
-  console.log(`jump to ${projItem.name}`)
+  const { origin } = location
+  window.open(`${origin}/view/dashboard#${projItem.homePage}`, '_blank')
 }
 
 onMounted(() => {

@@ -1,15 +1,22 @@
 <template>
   <el-sub-menu :index="menuItem.key">
-    <template #title>{{ menuItem.name }}2222</template>
-    <div v-for="item in menuItem.subMenu" :key="item.key">
+    <template #title>
+      {{ menuItem.name }}
+    </template>
+    <div
+      v-for="item in menuItem.subMenu"
+      :key="item.key"
+    >
       <SubMenu 
         v-if="item.subMenu && item.subMenu.length > 0" 
-        :menu-item="item"/>
-      <el-sub-menu 
+        :menu-item="item"
+      />
+      <el-menu-item 
         v-else 
-        :index="item.key">
+        :index="item.key"
+      >
         {{ item.name }}
-      </el-sub-menu>
+      </el-menu-item>
     </div>
   </el-sub-menu>
 </template>

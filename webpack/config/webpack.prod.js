@@ -16,7 +16,7 @@ const webpackProdConfig = merge.smart(baseConfig, {
   //生产环境的 output 配置
   output: {
     filename: "js/[name]_[chunkhash:8].bundle.js", //打包后的文件名
-    path: path.join(process.cwd(), "./app/public/dist/prod"), //打包后的文件存放路径
+    path: path.join(process.cwd(), "./app/public/dist/prod/"), //打包后的文件存放路径
     publicPath: "/dist/prod/", //打包后的文件在浏览器中访问的路径
     crossOriginLoading: "anonymous", //是否开启跨域请求
   },

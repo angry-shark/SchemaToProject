@@ -63,11 +63,14 @@
 <script setup>
 import { ArrowDown } from '@element-plus/icons-vue'
 import HeaderContainer from '$pages/widgets/header-container/header-container.vue'
-import { ref } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { useProjectStore } from '$store/project.js';
 import { useMenuStore } from '$store/menu.js';
 import SubMenu from './complex-view/sub-menu/sub-menu.vue';
+import { useRoute } from 'vue-router';
 
+
+const route = useRoute();
 const projectStore = useProjectStore();
 const menuStore = useMenuStore();
 
@@ -78,17 +81,52 @@ defineProps({
   }
 })
 
+const emits = defineEmits(['menu-select'])
 
 const activeKey = ref('');
 
+watch(() => route.query.key, (newKey) => {
+  setActiveKey();
+})
+
+watch(() => menuStore.menuList, (newList) => {
+  setActiveKey();
+})
+
+onMounted(() => {
+  setActiveKey();
+})
+
+/**
+ * 权限控制
+ */
+const setActiveKey = () => {
+  const menuItem = menuStore.findMenuItem({
+    key: 'key',
+    value: route.query.key
+  })
+  activeKey.value = menuItem?.key;
+}
+
+
 const onMenuSelect = (key) => {
-  activeKey.value = key;
+  const menuItem = menuStore.findMenuItem({
+    key: 'key',
+    value: key
+  })
+  emits('menu-select', menuItem);
 }
 
 const handleProjectCommand = (e) => {
-  console.log(e)
-}
+  const projectItem = projectStore.projectList.find(item => item.key === e);
+  if (!projectItem || !projectItem.homePage) {
+    return;
+  }
 
+  const { origin, pathname } = location;
+  location.replace(`${origin}${pathname}#${projectItem.homePage}`);
+  location.reload();
+}
 
 </script>
 <style lang="less" scoped>

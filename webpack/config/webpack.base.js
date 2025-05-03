@@ -129,8 +129,8 @@ module.exports = {
     // 把第三方库暴露到全局变量中
     new webpack.ProvidePlugin({
       Vue: "vue",
-      axios: 'axios',
-      _:'lodash'
+      axios: "axios",
+      _: "lodash",
     }),
     //定义全局变量
     new webpack.DefinePlugin({
@@ -167,6 +167,7 @@ module.exports = {
         },
         common: {
           //公共模块（跨entry）
+          test: /[\\/]common|widgets[\\/]/, //对于 common/widgets 下的文件都认为是公共模块
           name: "common", //模块名称
           minChunks: 2, //被两（2）个地方引用 即被认为是公共模块
           minSize: 1, //最小分割文件大小（1 byte）
