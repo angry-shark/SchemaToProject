@@ -1,24 +1,10 @@
 <template>
   <header-container :title="projName">
     <template #menu-content>
-      <el-menu
-        :default-active="activeKey"
-        :ellipsis="false"
-        mode="horizontal"
-        @select="onMenuSelect"
-      >
-        <div
-          v-for="(item) in menuStore.getMenuList()"
-          :key="item.key"
-        >
-          <sub-menu
-            v-if="item.subMenu && item.subMenu.length > 0"
-            :menu-item="item"
-          />
-          <el-menu-item
-            v-else
-            :index="item.key"
-          >
+      <el-menu :default-active="activeKey" :ellipsis="false" mode="horizontal" @select="onMenuSelect">
+        <div v-for="(item) in menuStore.getMenuList()" :key="item.key">
+          <sub-menu v-if="item.subMenu && item.subMenu.length > 0" :menu-item="item" />
+          <el-menu-item v-else :index="item.key">
             {{ item.name }}
           </el-menu-item>
         </div>
@@ -29,25 +15,15 @@
       <el-dropdown @command="handleProjectCommand">
         <span class="project-list">
           {{ projName }}
-          <el-icon
-            v-if="projectStore.projectList.length > 1"
-            class="el-icon-right"
-          >
+          <el-icon v-if="projectStore.projectList.length > 1" class="el-icon-right">
             <ArrowDown />
           </el-icon></span>
 
 
-        <template
-          v-if="projectStore.projectList.length > 1"
-          #dropdown
-        >
+        <template v-if="projectStore.projectList.length > 1" #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item
-              v-for="(item) in projectStore.projectList"
-              :key="item.key"
-              :command="item.key"
-              :disabled="item.name === projName"
-            >
+            <el-dropdown-item v-for="(item) in projectStore.projectList" :key="item.key" :command="item.key"
+              :disabled="item.name === projName">
               {{ item.name }}
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -91,7 +67,7 @@ watch(() => route.query.key, (newKey) => {
 
 watch(() => menuStore.menuList, (newList) => {
   setActiveKey();
-})
+}, { deep: true })
 
 onMounted(() => {
   setActiveKey();

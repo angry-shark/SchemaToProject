@@ -80,7 +80,7 @@ watch(
 watch(() => menuStore.menuList, (newList) => {
   setMenuList();
   setActiveKey()
-});
+},{deep:true});
 
 onMounted(() => {
   setMenuList();
