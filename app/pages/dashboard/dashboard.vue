@@ -1,13 +1,13 @@
 <template>
   <el-config-provider :locale="zhCn">
-    <HeaderView
+    <header-view
       :proj-name="projName"
       @menu-select="onMenuSelect"
     >
       <template #main-content>
         <router-view />
       </template>
-    </HeaderView>
+    </header-view>
   </el-config-provider>
 </template>
 <script setup>
@@ -101,4 +101,8 @@ async function getProjectConfig() {
 
 
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+:deep(.el-main) {
+    padding: 0;
+}
+</style>

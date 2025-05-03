@@ -1,5 +1,5 @@
 <template>
-  <HeaderContainer :title="projName">
+  <header-container :title="projName">
     <template #menu-content>
       <el-menu
         :default-active="activeKey"
@@ -11,7 +11,7 @@
           v-for="(item) in menuStore.getMenuList()"
           :key="item.key"
         >
-          <SubMenu
+          <sub-menu
             v-if="item.subMenu && item.subMenu.length > 0"
             :menu-item="item"
           />
@@ -58,7 +58,7 @@
       <!-- dep project store 的 menu to render -->
       <slot name="main-content" />
     </template>
-  </HeaderContainer>
+  </header-container>
 </template>
 <script setup>
 import { ArrowDown } from '@element-plus/icons-vue'

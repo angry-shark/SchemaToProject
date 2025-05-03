@@ -4,15 +4,15 @@
       {{ menuItem.name }}
     </template>
     <div
-      v-for="item in menuItem.subMenu"
+      v-for="(item) in menuItem.subMenu"
       :key="item.key"
     >
-      <sub-menu 
-        v-if="item.subMenu && item.subMenu.length > 0" 
+      <sub-menu
+        v-if="item.subMenu && item.subMenu.length > 0"
         :menu-item="item"
       />
-      <el-menu-item 
-        v-else 
+      <el-menu-item
+        v-else
         :index="item.key"
       >
         {{ item.name }}
@@ -21,13 +21,13 @@
   </el-sub-menu>
 </template>
 <script setup>
+
 const { menuItem } = defineProps({
     menuItem: {
         type: Object,
-        default: () => ({})
+        required: true
     }
 })
 
-console.log(menuItem.subMenu)
 </script>
 <style lang="less" scoped></style>

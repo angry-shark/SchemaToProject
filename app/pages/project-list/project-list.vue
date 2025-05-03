@@ -1,5 +1,5 @@
 <template>
-  <HeaderContainer title="项目列表">
+  <header-container title="项目列表">
     <template #main-content>
       <div v-loading="loading">
         <div v-for="item in modelList" :key="item.model?.key">
@@ -35,7 +35,7 @@
         </div>
       </div>
     </template>
-  </HeaderContainer>
+  </header-container>
 </template>
 <script setup>
 import { onMounted, ref } from 'vue'
