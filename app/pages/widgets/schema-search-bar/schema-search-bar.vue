@@ -13,7 +13,7 @@
       <!-- 展示子组件 字符串到组件-->
       <component
         :is="SearchItemConfig[schemaItem.option?.comType]?.component"
-        :ref="handleSearchComList"
+        :ref="searchComList"
         :schema-key="key"
         :schema="schemaItem"
         @loaded="handleChildLoaded"
@@ -81,9 +81,6 @@ const { schema } = toRefs(props)
 const emits = defineEmits(['load', 'search', 'reset'])
 
 const searchComList = ref([])
-function handleSearchComList(el) {
-    searchComList.value.push(el)
-}
 
 const getValues = () => {
     let dtoObj = {}
@@ -119,7 +116,6 @@ defineExpose({
     reset,
     getValues
 })
-
 </script>
 <style lang="less">
 .schema-search-bar {

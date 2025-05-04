@@ -87,6 +87,9 @@ module.exports = {
             {
               label: "新增商品",
               eventKey: "showComponent",
+              eventOption:{
+                comName:'createForm'
+              },
               type: "primary",
               plain: true,
             },
@@ -109,6 +112,12 @@ module.exports = {
             },
           ],
         },
+        componentConfig:{
+          createForm: {
+            title: "", //表单标题
+            saveBtnText: "", //保存按钮文案
+          },
+        }
       },
     },
     {

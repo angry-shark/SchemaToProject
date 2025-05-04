@@ -1,23 +1,52 @@
 <template>
   <div class="schema-table">
-    <el-table v-if="schema && schema.properties" v-loading="loading" :data="tableData" class="table">
+    <el-table
+      v-if="schema && schema.properties"
+      v-loading="loading"
+      :data="tableData"
+      class="table"
+    >
       <template v-for="(schemaItem, key) in schema.properties">
-        <el-table-column v-if="schemaItem.option.visible !== false" :key="key" :prop="key" :label="schemaItem.label"
-          v-bind="schemaItem.option"></el-table-column>
+        <el-table-column
+          v-if="schemaItem.option.visible !== false"
+          :key="key"
+          :prop="key"
+          :label="schemaItem.label"
+          v-bind="schemaItem.option"
+        ></el-table-column>
       </template>
-      <el-table-column v-if="buttons?.length > 0" label="操作" fixed="right" :width="operationWidth">
+      <el-table-column
+        v-if="buttons?.length > 0"
+        label="操作"
+        fixed="right"
+        :width="operationWidth"
+      >
         <template #default="scope">
-          <el-button v-for="item in buttons" :key="`${item.eventKey}-${scope.$index}`" link v-bind="item"
-            @click="operationHandler({ btnConfig: item, rowData: scope.row })">
+          <el-button
+            v-for="item in buttons"
+            :key="`${item.eventKey}-${scope.$index}`"
+            link
+            v-bind="item"
+            @click="operationHandler({ btnConfig: item, rowData: scope.row })"
+          >
             {{ item.label }}
           </el-button>
         </template>
       </el-table-column>
     </el-table>
-    <el-row class="pagination" justify="end">
-      <el-pagination :current-page="currentPage" :page-size="pageSize" :page-sizes="[10, 20, 50, 100, 200]"
-        :total="total" layout="total,sizes,prev,pager,next,jumper" @size-change="onPageSizeChange"
-        @current-change="onCurrentPageChange">
+    <el-row
+      class="pagination"
+      justify="end"
+    >
+      <el-pagination
+        :current-page="currentPage"
+        :page-size="pageSize"
+        :page-sizes="[10, 20, 50, 100, 200]"
+        :total="total"
+        layout="total,sizes,prev,pager,next,jumper"
+        @size-change="onPageSizeChange"
+        @current-change="onCurrentPageChange"
+      >
       </el-pagination>
     </el-row>
   </div>

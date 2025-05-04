@@ -13,6 +13,8 @@ export const useSchema = () => {
   const searchSchema = ref({});
   const searchConfig = ref({});
 
+  const components = ref({});
+
   watch(
     [
       () => route.query.key,
@@ -56,10 +58,15 @@ export const useSchema = () => {
         dtoProps = Object.assign({}, dtoProps, {
           option: props[`${comName}Option`],
         });
+
+        //处理 required 字段
+        const { required } = _schema;
+        if (required && required.find((pk) => pk === key)) {
+          dtoProps.option.required = true;
+        }
         dtoSchema.properties[key] = dtoProps;
       }
     }
-
     return dtoSchema;
   }
 
@@ -79,8 +86,11 @@ export const useSchema = () => {
       api.value = sConfig.api ?? "";
       tableSchema.value = undefined;
       tableConfig.value = undefined;
+
       searchSchema.value = undefined;
       searchConfig.value = undefined;
+
+      components.value = undefined;
 
       nextTick(() => {
         //构造 tableSchema & tableConfig
@@ -97,6 +107,20 @@ export const useSchema = () => {
         }
         searchSchema.value = dtoSearchSchema;
         searchConfig.value = sConfig.searchConfig ?? {};
+
+        //构造 components = {compKey: {schema, config}} 的配置
+        const { componentConfig } = sConfig;
+
+        if (componentConfig && Object.keys(componentConfig).length > 0) {
+          let dtoComponents = {};
+          for (const compName in componentConfig) {
+            dtoComponents[compName] = {
+              schema: buildDtoSchema(configSchema, compName),
+              config: componentConfig[compName],
+            };
+          }
+          components.value = dtoComponents;
+        }
       });
     }
   };
@@ -107,5 +131,6 @@ export const useSchema = () => {
     tableConfig,
     searchSchema,
     searchConfig,
+    components,
   };
 };
