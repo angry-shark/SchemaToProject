@@ -13,7 +13,8 @@ import '$pages/asserts/custom.css'
 import pinia from "$store";
 
 //引入页面路由（前端SPA路由）
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
+
 /**
  * Vue 的页面的主入口， 用于启动vue
  * @params pageComponent vue 的入口组件
@@ -32,7 +33,8 @@ export default (pageComponent, { routes, selector = "#root", libs = [] } = {}) =
   if (routes && routes.length > 0) {
     //引入路由
     const router = createRouter({
-      history: createWebHashHistory(), //采用 hash 模式
+      // history: createWebHashHistory(), //采用 hash 模式
+      history: createWebHistory(), //采用 history 模式
       routes,
     });
     app.use(router);

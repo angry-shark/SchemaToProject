@@ -24,8 +24,10 @@ export const useMenuStore = defineStore("menu", () => {
    * @returns
    */
   const findMenuItem = ({ key, value }, mList = menuList.value) => {
+    // console.log(key,value)
     for (let i = 0; i < mList.length; i++) {
       const menuItem = mList[i];
+      // console.log(menuItem)
       if (!menuItem) continue;
 
       if (menuItem[key] === value) {

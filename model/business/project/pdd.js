@@ -1,7 +1,7 @@
 module.exports = {
   name: "拼多多",
   desc: "拼多多电商系统",
-  homePage: "/todo?proj_key=pdd&key=product",
+  homePage: "/schema?proj_key=pdd&key=product",
   menu: [
     {
       key: "product",
@@ -10,6 +10,12 @@ module.exports = {
     {
       key: "client",
       name: "客户管理 （拼多多）",
+      menuType: "module",
+      moduleType: "schema",
+      schemaConfig: {
+        api: "/api/client",
+        schema: {},
+      },
     },
     {
       key: "data",
@@ -63,9 +69,10 @@ module.exports = {
                 key: "tag",
                 name: "标签",
                 menuType: "module",
-                moduleType: "custom",
-                customConfig: {
-                  path: "/todo",
+                moduleType: "schema",
+                schemaConfig: {
+                  api: "/api/client",
+                  schema: {},
                 },
               },
             ],

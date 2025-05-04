@@ -2,7 +2,7 @@ const path = require("path");
 
 
 /**
- * 从下往上 = 从外到内
+ * 从上往下 = 从外到内
  * @param {} app 
  */
 module.exports = (app) => {
@@ -41,4 +41,8 @@ module.exports = (app) => {
   //api 参数校验
   const apiParamsVerify = app.middlewares.apiParamsVerify
   app.use(apiParamsVerify)
+
+  //引入项目处理中间件
+  const projectHandler = app.middlewares.projectHandler;
+  app.use(projectHandler)
 };

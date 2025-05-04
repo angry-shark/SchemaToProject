@@ -18,6 +18,16 @@ const curl = ({
   const signKey = "adsefdrgfhjvgcxfbds34er5thy";
   const st = Date.now();
 
+  const dtoHeaders = {
+    ...headers,
+    s_t: st,
+    s_sign: md5(`${signKey}_${st}`),
+  }
+
+  if(url.indexOf('/api/proj') > -1 && window.projKey){
+    dtoHeaders['proj_key'] = window.projKey
+  }
+
   //构造请求参数
   const ajaxSetting = {
     url, //请求地址
@@ -26,11 +36,7 @@ const curl = ({
     data, // body data
     responseType, //response data type
     timeout, //timeout
-    headers: {
-      ...headers,
-      s_t: st,
-      s_sign: md5(`${signKey}_${st}`),
-    },
+    headers: dtoHeaders,
   };
 
   return axios.request(ajaxSetting)
@@ -42,6 +48,8 @@ const curl = ({
           ElMessage.error("请求参数异常");
         } else if (code === 445) {
           ElMessage.error("请求非法");
+        } else if (code === 446) {
+          ElMessage.error("缺少请求必要参数");
         } else if (code === 50000) {
           ElMessage.error(message);
         }
@@ -51,8 +59,8 @@ const curl = ({
         return Promise.resolve({ success, code, message });
       }
 
-      const { data, metaData } = resData;
-      return Promise.resolve({ success, data, metaData });
+      const { data, metadata } = resData;
+      return Promise.resolve({ success, data, metadata });
     })
     .catch((error) => {
       const { message } = error;
