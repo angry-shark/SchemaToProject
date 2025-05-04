@@ -1,11 +1,14 @@
 <template>
-    <el-config-provider :locale="zhCn">
-        <header-view :proj-name="projName" @menu-select="onMenuSelect">
-            <template #main-content>
-                <router-view />
-            </template>
-        </header-view>
-    </el-config-provider>
+  <el-config-provider :locale="zhCn">
+    <header-view
+      :proj-name="projName"
+      @menu-select="onMenuSelect"
+    >
+      <template #main-content>
+        <router-view />
+      </template>
+    </header-view>
+  </el-config-provider>
 </template>
 <script setup>
 import { zhCn } from 'element-plus/es/locale/index.mjs';

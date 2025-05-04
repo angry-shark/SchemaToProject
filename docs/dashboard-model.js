@@ -60,25 +60,43 @@ module.exports = {
               // 字段在 search-bar 中的相关配置
               searchOption: {
                 ...elComponentConfig, //标准的 el-component 配置
-                comType:'',//配置控件类型： input / select / ....
-                default:'',//默认值
+                comType: "", //配置控件类型： input / select / ....
+                default: "", //默认值
 
                 //当 comType 为 select 时
-                enumList:[], //下拉框可选项 
+                enumList: [], //下拉框可选项
 
                 //当 comType 为 dynamicSelect 时
-                api:'xxxx' //下拉框数据源
+                api: "xxxx", //下拉框数据源
               },
               formOption: {},
+
+              //字段在不同动态组件中的相关配置，前缀对应 componentConfig 中的键值
+              //eg： componentConfig.createForm ,这里对应 createFromOption
+              //字段在 createForm 中的配置
+              createFormOption: {
+                ...elComponentConfig, //标准的 el-component 配置
+                comType: "", //控键类型 input/select/input-number ...
+                visible: true, //是否展示（true/false）， 默认展示
+                disabled: false, //是否禁用（true/false），默认不禁用
+                default: "", //默认值
+
+                //如果 comType 是 select时
+                enumList: [], //可选项的枚举列表
+              },
             },
           },
         },
+        // table 相关配置
         tableConfig: {
           headerButtons: [
             {
               label: "", //按钮名称
               eventKey: "", //btn事件名称
-              eventOption: {}, //btn具体配置
+              eventOption: {
+                //当 eventKey === showComponent时
+                comName: "", //组件名称， 要show的组件名称
+              }, //btn具体配置
               ...elButtonConfig, //标准的 el-button 配置
             },
             ...{},
@@ -88,6 +106,9 @@ module.exports = {
               label: "", //按钮名称
               eventKey: "", //btn事件名称
               eventOption: {
+                //当 eventKey === showComponent时
+                comName: "", //组件名称，要show的组件名称
+
                 //when eventKey === remove
                 params: {
                   //paramKey:参数的键值；
@@ -99,9 +120,18 @@ module.exports = {
             },
             ...{},
           ],
-        }, // table 相关配置
-        searchConfig: {}, // search-bar 相关配置
-        components: {}, //模块组件
+        },
+        // search-bar 相关配置
+        searchConfig: {},
+        //动态组件相关配置
+        componentConfig: {
+          //create-form 表单相关配置
+          createForm: {
+            title: "", //表单标题
+            saveBtnText: "", //保存按钮文案
+          },
+          //...支持用户动态拓展
+        },
       },
     },
   ],
