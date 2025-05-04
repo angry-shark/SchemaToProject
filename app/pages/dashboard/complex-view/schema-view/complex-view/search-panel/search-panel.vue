@@ -12,7 +12,7 @@
 import { inject } from "vue";
 import SchemaSearchBar from '$widgets/schema-search-bar/schema-search-bar.vue'
 
-const { searchSchema, searchConfig } = inject('schemaViewData')
+const { searchSchema } = inject('schemaViewData')
 
 const emits = defineEmits(['search'])
 
