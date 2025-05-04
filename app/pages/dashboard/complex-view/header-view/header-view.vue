@@ -99,9 +99,8 @@ const handleProjectCommand = (e) => {
     return;
   }
 
-  const { origin, pathname } = location;
-  location.replace(`${origin}${pathname}#${projectItem.homePage}`);
-  location.reload();
+  const { host } = location;
+  location.replace(`http://${host}/view/dashboard${projectItem.homePage}`);
 }
 
 </script>

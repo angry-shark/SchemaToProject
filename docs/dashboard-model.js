@@ -54,10 +54,21 @@ module.exports = {
               // 字段在 table 中的相关配置
               tableOption: {
                 ...elTableColumnConfig, //标准的 el-table-column 配置
-                visible: true, //是否显示 true / false
+                visible: true, //是否显示 true / false, 显式配置为 false 时不展示
                 toFixed: 2, //小数点后保留几位
               },
-              searchOption: {},
+              // 字段在 search-bar 中的相关配置
+              searchOption: {
+                ...elComponentConfig, //标准的 el-component 配置
+                comType:'',//配置控件类型： input / select / ....
+                default:'',//默认值
+
+                //当 comType 为 select 时
+                enumList:[], //下拉框可选项 
+
+                //当 comType 为 dynamicSelect 时
+                api:'xxxx' //下拉框数据源
+              },
               formOption: {},
             },
           },

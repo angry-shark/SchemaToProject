@@ -4,6 +4,9 @@ module.exports = {
       query: {
         type: "object",
         properties: {
+          product_name: {
+            type: "string",
+          },
           size: {
             type: "string",
           },
@@ -28,4 +31,8 @@ module.exports = {
       required: ["product_id"],
     },
   },
+
+  "/api/proj/product_enum/list":{
+    get:{}
+  }
 };

@@ -10,6 +10,9 @@ export const useSchema = () => {
   const tableSchema = ref({});
   const tableConfig = ref({});
 
+  const searchSchema = ref({});
+  const searchConfig = ref({});
+
   watch(
     [
       () => route.query.key,
@@ -36,7 +39,6 @@ export const useSchema = () => {
       type: "object",
       properties: {},
     };
-
 
     //提取有效 schema 的字段信息（清除噪音）
     for (const key in _schema.properties) {
@@ -77,12 +79,24 @@ export const useSchema = () => {
       api.value = sConfig.api ?? "";
       tableSchema.value = undefined;
       tableConfig.value = undefined;
+      searchSchema.value = undefined;
+      searchConfig.value = undefined;
 
       nextTick(() => {
+        //构造 tableSchema & tableConfig
         tableSchema.value = buildDtoSchema(configSchema, "table");
         tableConfig.value = sConfig.tableConfig ?? {};
 
-        console.log(sConfig)
+        //构造 searchSchema & searchConfig
+        const dtoSearchSchema = buildDtoSchema(configSchema, "search");
+        //带上url中的搜索值
+        for (let key in dtoSearchSchema.properties) {
+          if (route.query[key] !== undefined) {
+            dtoSearchSchema.properties[key].option.default = route.query[key];
+          }
+        }
+        searchSchema.value = dtoSearchSchema;
+        searchConfig.value = sConfig.searchConfig ?? {};
       });
     }
   };
@@ -91,5 +105,7 @@ export const useSchema = () => {
     api,
     tableSchema,
     tableConfig,
+    searchSchema,
+    searchConfig,
   };
 };

@@ -1,13 +1,29 @@
 <template>
   <el-card class="table-panel">
     <!-- operation-panel -->
-    <el-row v-if="tableConfig?.headerButtons?.length > 0" justify="end" class="operation-panel">
-      <el-button v-for="(item, idx) in tableConfig?.headerButtons" :key="idx" v-bind="item"
-        @click="operationHandler({ btnConfig: item })">{{ item.label }}</el-button>
+    <el-row
+      v-if="tableConfig?.headerButtons?.length > 0"
+      justify="end"
+      class="operation-panel"
+    >
+      <el-button
+        v-for="(item, idx) in tableConfig?.headerButtons"
+        :key="idx"
+        v-bind="item"
+        @click="operationHandler({ btnConfig: item })"
+      >
+        {{ item.label }}
+      </el-button>
     </el-row>
     <!-- schema-table 组件 widgets -->
-    <schema-table ref="schemaTableRef" :api="api" :schema="tableSchema" :buttons="tableConfig?.rowButtons ?? []"
-      @operate="operationHandler"></schema-table>
+    <schema-table
+      ref="schemaTableRef"
+      :api="api"
+      :api-params="apiParams"
+      :schema="tableSchema"
+      :buttons="tableConfig?.rowButtons ?? []"
+      @operate="operationHandler"
+    ></schema-table>
   </el-card>
 </template>
 <script setup>
@@ -20,8 +36,9 @@ const emits = defineEmits(['operate'])
 
 const {
   api,
+  apiParams,
   tableSchema,
-  tableConfig
+  tableConfig,
 } = inject('schemaViewData')
 
 const schemaTableRef = ref(null)
