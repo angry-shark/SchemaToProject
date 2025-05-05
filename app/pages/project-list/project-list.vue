@@ -60,8 +60,6 @@ async function getModelList() {
   }
 
   modelList.value = res.data
-
-  console.log(modelList.value)
 }
 
 const onEnter = (projItem) => {

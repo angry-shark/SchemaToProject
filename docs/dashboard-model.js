@@ -84,6 +84,21 @@ module.exports = {
                 //如果 comType 是 select时
                 enumList: [], //可选项的枚举列表
               },
+
+              editFormOption:{
+                ...elComponentConfig, //标准的 el-component 配置
+                comType: "", //控键类型 input/select/input-number ...
+                visible: true, //是否展示（true/false）， 默认展示
+                disabled: false, //是否禁用（true/false），默认不禁用
+                default: "", //默认值
+
+                //如果 comType 是 select时
+                enumList: [], //可选项的枚举列表
+              },
+
+              detailPanel:{
+                ...elComponentConfig, //标准的 el-component 配置
+              }
             },
           },
         },
@@ -130,6 +145,17 @@ module.exports = {
             title: "", //表单标题
             saveBtnText: "", //保存按钮文案
           },
+
+          editForm: {
+            mainKey: "", //表单主键，用于唯一标识要修改的数据
+            title: "", //表单标题
+            saveBtnText: "", //保存按钮文案
+          },
+
+          detailPanel:{
+            mainKey: "", //表单主键，用于唯一标识要修改的数据
+            title: "", //表单标题
+          }
           //...支持用户动态拓展
         },
       },

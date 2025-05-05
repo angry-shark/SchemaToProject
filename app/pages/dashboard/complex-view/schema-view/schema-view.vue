@@ -29,7 +29,12 @@ const apiParams = ref({})
 const tablePanelRef = ref(null)
 const comListRef = ref([])
 
-const onComponentCommand = () => { }
+const onComponentCommand = (data) => { 
+  const {event} = data
+  if(event === 'loadTableData'){
+    tablePanelRef.value.loadTableData()
+  }
+}
 
 const {
   api,

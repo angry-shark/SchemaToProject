@@ -22,6 +22,11 @@ module.exports = {
               searchOption: {
                 comType: "input",
               },
+              editFormOption: {
+                comType: "input",
+                disabled: true,
+              },
+              detailPanelOption: {},
             },
             product_name: {
               type: "string",
@@ -33,6 +38,14 @@ module.exports = {
                 comType: "dynamicSelect",
                 api: "/api/proj/product_enum/list",
               },
+              createFormOption: {
+                comType: "input",
+                clearable: true,
+              },
+              editFormOption: {
+                comType: "input",
+              },
+              detailPanelOption: {},
             },
             price: {
               type: "number",
@@ -61,6 +74,13 @@ module.exports = {
                   },
                 ],
               },
+              createFormOption: {
+                comType: "inputNumber",
+              },
+              editFormOption: {
+                comType: "inputNumber",
+              },
+              detailPanelOption: {},
             },
             inventory: {
               type: "number",
@@ -71,24 +91,61 @@ module.exports = {
               searchOption: {
                 comType: "input",
               },
+              createFormOption: {
+                comType: "select",
+                enumList: [
+                  {
+                    label: "100",
+                    value: 100,
+                  },
+                  {
+                    label: "1000",
+                    value: 1000,
+                  },
+                  {
+                    label: "10000",
+                    value: 10000,
+                  },
+                ],
+              },
+              editFormOption: {
+                comType: "select",
+                enumList: [
+                  {
+                    label: "100",
+                    value: 100,
+                  },
+                  {
+                    label: "1000",
+                    value: 1000,
+                  },
+                  {
+                    label: "10000",
+                    value: 10000,
+                  },
+                ],
+              },
+              detailPanelOption: {},
             },
             create_time: {
               type: "string",
               label: "创建时间",
               tableOption: {},
-              searchOption:{
-                comType:'dateRange'
-              }
+              searchOption: {
+                comType: "dateRange",
+              },
+              detailPanelOption: {},
             },
           },
+          required: ["product_name"],
         },
         tableConfig: {
           headerButtons: [
             {
               label: "新增商品",
               eventKey: "showComponent",
-              eventOption:{
-                comName:'createForm'
+              eventOption: {
+                comName: "createForm",
               },
               type: "primary",
               plain: true,
@@ -96,8 +153,19 @@ module.exports = {
           ],
           rowButtons: [
             {
+              label: "查看详情",
+              eventKey: "showComponent",
+              eventOption: {
+                comName: "detailPanel",
+              },
+              type: "primary",
+            },
+            {
               label: "修改",
               eventKey: "showComponent",
+              eventOption: {
+                comName: "editForm",
+              },
               type: "warning",
             },
             {
@@ -112,12 +180,21 @@ module.exports = {
             },
           ],
         },
-        componentConfig:{
+        componentConfig: {
           createForm: {
-            title: "", //表单标题
-            saveBtnText: "", //保存按钮文案
+            title: "新增商品", //表单标题
+            saveBtnText: "确认新增", //保存按钮文案
           },
-        }
+          editForm: {
+            mainKey: "product_id",
+            title: "修改商品", //表单标题
+            saveBtnText: "确认修改", //保存按钮文案
+          },
+          detailPanel: {
+            mainKey: "product_id",
+            title: "商品详情",
+          },
+        },
       },
     },
     {
